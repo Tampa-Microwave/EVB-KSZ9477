@@ -1,7 +1,10 @@
 # Linux network programming samples makefile
 
+ifeq ($(CC),)
+	CC=gcc
+endif
 
-GCC ?= $(CROSS_COMPILE)gcc
+GCC ?= $(CROSS_COMPILE)$(CC)
 
 ifeq (-gnueabi-, $(findstring -gnueabi-, $(CROSS_COMPILE)))
 	CFLAGS += -march=armv4t

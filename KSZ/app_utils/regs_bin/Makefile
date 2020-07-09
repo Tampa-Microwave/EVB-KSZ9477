@@ -4,19 +4,23 @@
 
 #RAMDISK_DIR = ../ramdisk/usr/sbin
 
-#CFLAGS = -Wall
+CFLAGS = -Wall
 
 #ifeq (none-linux-gnueabi, $(findstring none-linux-gnueabi, $(CROSS_COMPILE)))
 #	CFLAGS += -march=armv4t
 #	LDFLAGS += -march=armv4t
 #endif
 
+ifeq ($(CC),)
+	CC=gcc
+endif
+
 EXE=regs_bin
 
 all: $(EXE)
 
 regs_bin: regs_bin.c
-	$(CROSS_COMPILE)gcc -o regs_bin $(CFLAGS) regs_bin.c
+	$(CROSS_COMPILE)$(CC) -o regs_bin $(CFLAGS) regs_bin.c
 
 clean:
 	$(RM) $(EXE)

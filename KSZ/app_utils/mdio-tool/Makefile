@@ -11,12 +11,16 @@
 #	LDFLAGS += -march=armv4t
 #endif
 
+ifeq ($(CC),)
+	CC=gcc
+endif
+
 EXE=mdio-tool
 
 all: $(EXE)
 
 mdio-tool: mdio-tool.c
-	$(CROSS_COMPILE)gcc -o mdio-tool $(CFLAGS) mdio-tool.c
+	$(CROSS_COMPILE)$(CC) -o mdio-tool $(CFLAGS) mdio-tool.c
 
 clean:
 	$(RM) $(EXE)
