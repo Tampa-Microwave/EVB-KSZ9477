@@ -16,7 +16,7 @@ EXE=regs_bin
 all: $(EXE)
 
 regs_bin: regs_bin.c
-	$(CROSS_COMPILE)gcc -o regs_bin $(CFLAGS) regs_bin.c
+	$(CC) -o regs_bin $(CFLAGS) regs_bin.c
 
 clean:
 	$(RM) $(EXE)
