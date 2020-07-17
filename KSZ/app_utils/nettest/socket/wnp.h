@@ -29,12 +29,6 @@ typedef int SOCKET;
 #define SA  struct sockaddr
 #define SAI struct sockaddr_in
 
-#ifndef _STDINT_H
-typedef unsigned char  uint8_t;
-typedef unsigned short uint16_t;
-typedef unsigned long  uint32_t;
-#endif
-
 #ifndef _SYS_SOCKET_H
 typedef char           int8_t;
 typedef short          int16_t;

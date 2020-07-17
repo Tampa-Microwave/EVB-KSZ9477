@@ -1,13 +1,5 @@
 # Linux network programming samples makefile
 
-
-GCC ?= $(CROSS_COMPILE)gcc
-
-ifeq (-gnueabi-, $(findstring -gnueabi-, $(CROSS_COMPILE)))
-	CFLAGS += -march=armv4t
-	LDFLAGS += -march=armv4t
-endif
-
 CFLAGS += -Wall -Wno-array-bounds -Wno-unused-variable -Wno-unused-function \
 	-Wno-unused-but-set-variable
 
@@ -21,10 +13,10 @@ INCDIR  = -I$(SOCKDIR)
 
 
 %.o: %.c
-	@$(GCC) -O2 $(CFLAGS) -c $<
+	@$(CC) $(CFLAGS) -c $<
 
 %.o: $(SOCKDIR)/%.c
-	@$(GCC) -O2 $(CFLAGS) -c $<
+	@$(CC) $(CFLAGS) -c $<
 
 
 OBJS = error.o inetfunc.o iofunc.o wrapsock.o wrapstdio.o ip.o wrapmcast.o
@@ -47,31 +39,31 @@ wrapthread.o    : $(SOCKDIR)/wrapthread.c $(HEADERS)
 
 
 ptp: ptp.c $(HEADERS) $(OBJS) wrapthread.o
-	$(GCC) $(INCDIR) -O2 $(CFLAGS) -o $@ $< $(OBJS) wrapthread.o -pthread
+	$(CC) $(INCDIR) $(CFLAGS) -o $@ $< $(OBJS) wrapthread.o -pthread
 
 prifinfo: prifinfo.c $(HEADERS) $(OBJS)
-	$(GCC) $(INCDIR) -O2 $(CFLAGS) -o $@ $< $(OBJS)
+	$(CC) $(INCDIR) $(CFLAGS) -o $@ $< $(OBJS)
 
 rstptest: rstptest.c $(HEADERS) $(OBJS) wrapthread.o
-	$(GCC) $(INCDIR) -O2 $(CFLAGS) -o $@ $< $(OBJS) wrapthread.o -pthread
+	$(CC) $(INCDIR) $(CFLAGS) -o $@ $< $(OBJS) wrapthread.o -pthread
 
 acltest: acltest.c $(HEADERS) $(OBJS) wrapthread.o
-	$(GCC) $(INCDIR) -O2 $(CFLAGS) -o $@ $< $(OBJS) wrapthread.o -pthread
+	$(CC) $(INCDIR) $(CFLAGS) -o $@ $< $(OBJS) wrapthread.o -pthread
 
 authtest: authtest.c $(HEADERS) $(OBJS) wrapthread.o
-	$(GCC) $(INCDIR) -O2 $(CFLAGS) -o $@ $< $(OBJS) wrapthread.o -pthread
+	$(CC) $(INCDIR) $(CFLAGS) -o $@ $< $(OBJS) wrapthread.o -pthread
 
 nettest: nettest.c $(HEADERS) $(OBJS) wrapthread.o
-	$(GCC) $(INCDIR) -O2 $(CFLAGS) -o $@ $< $(OBJS) wrapthread.o -pthread
+	$(CC) $(INCDIR) $(CFLAGS) -o $@ $< $(OBJS) wrapthread.o -pthread
 
 kszsw: kszsw.c $(HEADERS) $(OBJS) wrapthread.o
-	$(GCC) $(INCDIR) -O2 $(CFLAGS) -o $@ $< $(OBJS) wrapthread.o -pthread
+	$(CC) $(INCDIR) $(CFLAGS) -o $@ $< $(OBJS) wrapthread.o -pthread
 
 dlr: dlr.c $(HEADERS) $(OBJS) wrapthread.o
-	$(GCC) $(INCDIR) -O2 $(CFLAGS) -o $@ $< $(OBJS) wrapthread.o -pthread
+	$(CC) $(INCDIR)  $(CFLAGS) -o $@ $< $(OBJS) wrapthread.o -pthread
 
 dlr_daemon: dlr_daemon.c $(HEADERS) $(OBJS) wrapthread.o
-	$(GCC) $(INCDIR) -O2 $(CFLAGS) -o $@ $< $(OBJS) wrapthread.o -pthread
+	$(CC) $(INCDIR)  $(CFLAGS) -o $@ $< $(OBJS) wrapthread.o -pthread
 
 clean:
 	@rm -f *.o
