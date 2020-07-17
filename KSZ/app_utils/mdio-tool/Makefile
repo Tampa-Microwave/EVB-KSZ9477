@@ -16,7 +16,7 @@ EXE=mdio-tool
 all: $(EXE)
 
 mdio-tool: mdio-tool.c
-	$(CROSS_COMPILE)gcc -o mdio-tool $(CFLAGS) mdio-tool.c
+	$(CC) -o mdio-tool $(CFLAGS) mdio-tool.c
 
 clean:
 	$(RM) $(EXE)
