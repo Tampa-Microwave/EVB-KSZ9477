@@ -1,22 +1,9 @@
-
-
-CROSS_COMPILE ?= arm-linux-
-
-#RAMDISK_DIR = ../ramdisk/usr/sbin
-
-#CFLAGS = -Wall
-
-ifeq (none-linux-gnueabi, $(findstring none-linux-gnueabi, $(CROSS_COMPILE)))
-	CFLAGS += -march=armv4t
-	LDFLAGS += -march=armv4t
-endif
-
 EXE=lan8770_app
 
 all: $(EXE)
 
 lan8770_app: lan8770_app.c
-	$(CROSS_COMPILE)gcc -o lan8770_app $(CFLAGS) lan8770_app.c
+	$(CC) -o lan8770_app $(CFLAGS) lan8770_app.c -lpthread -lmnl
 
 clean:
 	$(RM) $(EXE)
